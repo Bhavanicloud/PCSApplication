@@ -31,7 +31,7 @@ public class iJobDetailsDaoImp implements iJobDetailsDao {
 				  d.setCompanyName(rst.getString(4));
 				  d.setLocation(rst.getString(5));
 				  d.setKeyskill(rst.getString(6));
-				  d.setSalary(rst.getFloat(7));
+				  d.setSalary(rst.getInt(7));
 				  d.setExperience(rst.getInt(8));
 				  d.setActive(rst.getString(9));
 				  dList.add(d);
@@ -49,14 +49,14 @@ public class iJobDetailsDaoImp implements iJobDetailsDao {
   
   public void addDetails(JobDetails d) {
 	  try {
-		  String query ="insert into JobDetails(JobTitle,JobDescription,CompanyName,Location,Keyskill,Salary,Experience,Active)values(?,?,?,?,?,?,?,?)";
+		  String query ="insert into JobDetails(JobTitle,JobDescription,CompanyName,Location,KeySkill,Salary,Experience,Active)values(?,?,?,?,?,?,?,?)";
 	      PreparedStatement pst = conn.prepareStatement(query);
 	      pst.setString(1, d.getJobTitle());
 	      pst.setString(2, d.getJobDescription());
 	      pst.setString(3, d.getCompanyName());
 	      pst.setString(4,d.getLocation());
 	      pst.setString(5, d.getKeyskill());
-	      pst.setFloat(6,d.getSalary());
+	      pst.setInt(6,d.getSalary());
 	      pst.setInt(7, d.getExperience());
 	      pst.setString(8, d.getActive());
 	      int i = pst.executeUpdate();
@@ -75,7 +75,7 @@ public class iJobDetailsDaoImp implements iJobDetailsDao {
   public JobDetails getDetailsById(int id) {
 	JobDetails d = new JobDetails();
 	try {
-		String query = "select * from JobDetails where Jobid=?";
+		String query = "select * from JobDetails where JobId=?";
 	    PreparedStatement pst = conn.prepareStatement(query);
 	    pst.setInt(1,id);
 	    ResultSet rst =pst.executeQuery(query);
@@ -87,7 +87,7 @@ public class iJobDetailsDaoImp implements iJobDetailsDao {
 	    		d.setCompanyName(rst.getString(4));
 	    		d.setLocation(rst.getString(5));
 	    		d.setKeyskill(rst.getString(6));
-	    		d.setSalary(rst.getFloat(7));
+	    		d.setSalary(rst.getInt(7));
 	    		d.setExperience(rst.getInt(8));
 	    		d.setActive(rst.getString(9));
 	    	}
@@ -124,7 +124,7 @@ public class iJobDetailsDaoImp implements iJobDetailsDao {
   public void deactiveDetails(JobDetails d) {
 	try {
 		//creating PreparedStatement object by passing query string
-		PreparedStatement pst=conn.prepareStatement("update jobdetails set Active=? where JobId=?");
+		PreparedStatement pst=conn.prepareStatement("update Jobdetails set Active=? where JobId=?");
 		pst.setString(1, "Deactive");
 		pst.setInt(2, d.getJobId());
 		int i=pst.executeUpdate();
@@ -164,7 +164,7 @@ public class iJobDetailsDaoImp implements iJobDetailsDao {
   @Override
   public void deleteDetails(int id) {
 	  try {
-		  PreparedStatement pst = conn.prepareStatement("delete from JobDetails where Jobid=?");
+		  PreparedStatement pst = conn.prepareStatement("delete from JobDetails where JobId=?");
 	      pst.setInt(1, id);
 	      int i = pst.executeUpdate();
 	      if(i==1) {

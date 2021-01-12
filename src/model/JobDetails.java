@@ -7,7 +7,7 @@ public class JobDetails {
      String CompanyName;
      String location;
      String keyskill;
-     float salary;
+     int salary;
      int experience;
      String active;
 	public JobDetails() {
@@ -17,7 +17,7 @@ public class JobDetails {
      
 
 public JobDetails(int jobId, String jobTitle, String jobDescription, String companyName, String location,
-		String keyskill, float salary, int experience,String active) {
+		String keyskill, int salary, int experience,String active) {
 	super();
 	this.jobId = jobId;
 	JobTitle = jobTitle;
@@ -30,7 +30,7 @@ public JobDetails(int jobId, String jobTitle, String jobDescription, String comp
 	 this.active = active;
 }
 public JobDetails(String jobTitle, String jobDescription, String companyName, String location, String keyskill,
-		float salary, int experience,String active) {
+		int salary, int experience,String active) {
 	super();
 	JobTitle = jobTitle;
 	JobDescription = jobDescription;
@@ -77,10 +77,10 @@ public String getKeyskill() {
 public void setKeyskill(String keyskill) {
 	this.keyskill = keyskill;
 }
-public float getSalary() {
+public int getSalary() {
 	return salary;
 }
-public void setSalary(float salary) {
+public void setSalary(int salary) {
 	this.salary = salary;
 }
 public int getExperience() {

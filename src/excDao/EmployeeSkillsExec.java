@@ -63,6 +63,7 @@ public class EmployeeSkillsExec{
 			int id;
 			String Experience;
 			String SkillId;
+			
 			System.out.println("Enter EmployeeId whose record you want to update:");
 			id=Integer.parseInt(reader.readLine());
 			EmployeeSkills emp=empController.getEmployeeskillById(id);
@@ -70,10 +71,13 @@ public class EmployeeSkillsExec{
 			SkillId=reader.readLine();
 			System.out.println("Enter your new Experience:");
 			Experience=reader.readLine();
+			empController.updateEmployeeskills(emp);
+			System.out.println("Updation successful..");
+			
 			
 		}
 		catch(IOException ex) {
-			System.out.println(ex.getMessage());
+			System.out.println("SOrry entered wrong information");
 		}
 	}
 		

@@ -10,4 +10,5 @@ public interface iEmployeeDao {
 	void deactivateEmployee(Employee emp);
 	void activateEmployee(Employee emp);
 	void deleteEmployee(int id);
+	Employee checkLogin(String userId, String password);
 }

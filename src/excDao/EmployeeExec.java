@@ -21,7 +21,7 @@ public class EmployeeExec {
 		}
 	}
 	
-	public void getEmployeeById() {
+	public void getEmployeeById() throws NumberFormatException, IOException {
 		int id=0;
 		try {
 			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));

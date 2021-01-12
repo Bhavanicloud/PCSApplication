@@ -20,7 +20,7 @@ public class iEmployeeSkillsDaoimp implements iEmployeeSkillDao {
 	public List<EmployeeSkills> getAllEmployeeskill() {
 		List<EmployeeSkills> empList=new ArrayList<EmployeeSkills>();
 		try {
-			String query="select * from Employeeskill";
+			String query="select * from Employeeskills";
 			Statement stm=conn.createStatement();
 			ResultSet rst=stm.executeQuery(query);
 			if(rst!=null) {
@@ -44,7 +44,7 @@ public class iEmployeeSkillsDaoimp implements iEmployeeSkillDao {
 	@Override
 	public void addEmployeeskill(EmployeeSkills emp) {
 		try {
-			String query="insert into Employee(Employeeid,Skillid,Experience) values(?,?,?)";
+			String query="insert into Employeeskills(EmpId,SkillId,Experience) values(?,?,?)";
 			PreparedStatement pst=conn.prepareStatement(query);
 			//pst.setInt(1,emp.getEsId());
 			pst.setString(1,emp.getEmpid());
@@ -68,7 +68,7 @@ public class iEmployeeSkillsDaoimp implements iEmployeeSkillDao {
 	public EmployeeSkills getEmployeeskillById(int id) {
 		EmployeeSkills emp=new EmployeeSkills();
 		try {
-			String query="select * from Employeeskill where Employeeskillid=?";
+			String query="select * from Employeeskills where ESid=?";
 			PreparedStatement pst=conn.prepareStatement(query);
 			pst.setInt(1,id);
 			ResultSet rst=pst.executeQuery(query);
@@ -91,12 +91,12 @@ public class iEmployeeSkillsDaoimp implements iEmployeeSkillDao {
 	@Override
 	public void updateEmployeeskills(EmployeeSkills emp) {
 		try {
-			String query = "UPDATE Employee SET Employeeskillid=?, Employeeid=? WHERE Skillid=?";
+			String query = "UPDATE Employeeskills SET EmpId=?, SkillId=? ,Experience=? WHERE ESid=?";
 		
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, emp.getEmpid());
-			statement.setString(2, emp.getSkillid());
-			statement.setString(3,emp.getExperience());		 
+			statement.setString(1, emp.getSkillid());
+			statement.setString(2,emp.getExperience());		 
 			int rowsUpdated = statement.executeUpdate();
 			if (rowsUpdated > 0) {
 				System.out.println("An existing user was updated successfully!");
@@ -158,7 +158,7 @@ public class iEmployeeSkillsDaoimp implements iEmployeeSkillDao {
 	public void deleteEmployeeskills(int id) {
 		try {
 			//creating PreparedStatement object by passing query string
-			PreparedStatement pst=conn.prepareStatement("delete from Employee where EmployeeId=?");
+			PreparedStatement pst=conn.prepareStatement("delete from Employeeskills where EmpId=?");
 			pst.setInt(1, id);
 			int i=pst.executeUpdate();
 			if(i==1){

@@ -15,7 +15,33 @@ public class iEmployeeDaoImp implements iEmployeeDao {
 	public iEmployeeDaoImp() {
 		conn=JDBCConnection.getDBConnection();
 	}
-
+    public Employee checkLogin(String userId,String password) {
+    	Employee emp = new Employee();
+    	try {
+    		String query ="select * from Employee where userId=? and password=?";
+    		PreparedStatement pst = conn.prepareStatement("");
+    		pst.setString(1, userId);
+    		pst.setString(2, password);
+    		ResultSet rst=pst.executeQuery();
+    		if(rst!=null) {
+    			if(rst.next()) {
+    				emp.setEmployeeid(rst.getInt(1));
+    				emp.setFirstName(rst.getString(2));
+    				emp.setLastName(rst.getString(3));
+    				emp.setEmail(rst.getString(3));
+    				emp.setUserId(rst.getString(3));
+    				emp.setPassword(rst.getString(3));
+    				emp.setRole(rst.getString(3));
+    				emp.setGender(rst.getString(3));
+    				emp.setActive(rst.getString(3));
+    				
+    			}
+    		}
+    	}catch(SQLException ex) {
+    		System.out.println(ex);
+    	}
+    	return emp;
+    }
 	@Override
 	public List<Employee> getAllEmployees() {
 		List<Employee> empList=new ArrayList<Employee>();
@@ -24,8 +50,9 @@ public class iEmployeeDaoImp implements iEmployeeDao {
 			Statement stmt=conn.createStatement();
 			ResultSet rst=stmt.executeQuery(query);
 			if(rst!=null) {
-				Employee emp=new Employee();
+				
 				while(rst.next()) {
+					Employee emp=new Employee();
 					emp.setEmployeeid(rst.getInt(1));
 					emp.setFirstName(rst.getString(2));
 					emp.setLastName(rst.getString(3));
@@ -77,7 +104,7 @@ public class iEmployeeDaoImp implements iEmployeeDao {
 			String query="select * from Employee where EmployeeId=?";
 			PreparedStatement pst=conn.prepareStatement(query);
 			pst.setInt(1,id);
-			ResultSet rst=pst.executeQuery(query);
+			ResultSet rst=pst.executeQuery();
 			if(rst!=null) {
 				while(rst.next()) {
 					emp.setEmployeeid(rst.getInt(1));

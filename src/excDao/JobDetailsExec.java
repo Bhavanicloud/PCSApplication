@@ -61,8 +61,7 @@ public void addDetails() {
      	d.setSalary(reader.read());
      	System.out.println("Experience:");
      	d.setExperience(reader.read());
-     	System.out.println("Active:");
-     	d.setActive(reader.readLine());
+     	
      	if(jobtitle.equals("Developer")) {
      		d.setActive("Active");
      	}

@@ -23,7 +23,7 @@ Connection conn=null;
 	public List<SkillDetails> getAllSkillDetails() {
 		List<SkillDetails> skList=new ArrayList<SkillDetails>();
 		try {
-			String query="select * from Employee";
+			String query="select * from SkillDetails";
 			Statement stmt=conn.createStatement();
 			ResultSet rst=stmt.executeQuery(query);
 			if(rst!=null) {
@@ -44,7 +44,7 @@ Connection conn=null;
 	@Override
 	public void addSkillDetails(SkillDetails sk) {
 		try {
-			String query="insert into Employee(SkillName,SkillDescription) values(?,?)";
+			String query="insert into SkillDetails(SkillName,SkillDescription) values(?,?)";
 			PreparedStatement pst=conn.prepareStatement(query);
 			pst.setString(1,sk.getSkillName());
 			pst.setString(2,sk.getSkillDescription());

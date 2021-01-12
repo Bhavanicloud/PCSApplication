@@ -1,6 +1,7 @@
 package entry;
 
 import java.util.Scanner;
+import java.io.IOException;
 import java.sql.SQLException;
 import config.JDBCConnection;
 import excDao.EmployeeExec;
