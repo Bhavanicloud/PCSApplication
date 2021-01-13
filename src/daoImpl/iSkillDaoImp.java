@@ -44,10 +44,11 @@ Connection conn=null;
 	@Override
 	public void addSkillDetails(SkillDetails sk) {
 		try {
-			String query="insert into SkillDetails(SkillName,SkillDescription) values(?,?)";
+			String query="insert into SkillDetails(SkillName,SkillDescription,Active) values(?,?,?)";
 			PreparedStatement pst=conn.prepareStatement(query);
 			pst.setString(1,sk.getSkillName());
 			pst.setString(2,sk.getSkillDescription());
+			pst.setString(3,sk.getActive());
 			
 			int i=pst.executeUpdate();
 			if(i==1) {
